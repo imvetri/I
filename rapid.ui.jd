@@ -1,0 +1,9 @@
+// download the image to the ui5-local-repo image folder
+// here resources/sap/ushell/themes/base/img/SAPLogo.svg
+controls = document.createElement("img");
+
+// find the src of the image and add it here
+controls.src
+document.body.appendChild(controls)
+
+// add a class that loads this image from the right window
