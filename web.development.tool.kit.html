@@ -1,0 +1,160 @@
+<div id="documents">
+    <h2>Web development toolkit</h2>
+
+</div>
+<div id ="UX">
+    <h2>ux designer</h2>
+    <h3>for the sake of simplicity, shapes are rectangles</h3>
+    
+    <div class="inline-block">
+        <label>new or pick from?</label>
+        <select name="layout" id="source" onchange="loadRectangleList()">
+            <option value="single">new</option>
+            <option value="pick">pick</option>
+        </select>
+        <span  id="rectangles" style="display:none">
+            <label>reference rectangle</label>
+            <select name="rectangles" >
+                <option value="rectangle1">rectangle1</option>
+            </select>
+        </span>
+    </div>
+
+    <div class="inline-block">
+        <label>name</label>
+        <input type="text" value=""/>    
+    </div>
+    <div class="inline-block">
+        <label>height</label>
+        <input type="number" value=""/>    
+    </div>
+    
+    <div class="inline-block">
+        <label>width</label>
+        <input type="number" value=""/>
+    </div>
+    
+    <div class="inline-block">
+        <label>color</label>
+        <input type="color" value=""/>
+    </div>
+    
+    <div class="inline-block">
+        <label>background color</label>
+        <input type="color" value=""/>
+    </div>
+    
+    <div class="inline-block">
+        <label>inner space</label>
+        <input type="text" value=""/>
+    </div>
+
+    
+    <div class="inline-block">
+        <label>inner layout</label>
+        <select name="layout" id="layout">
+            <option value="single">single</option>
+            <option value="double">double</option>
+        </select>
+    </div>
+
+    <div class="inline-block">
+        <label>child of rectangle</label>
+        <select name="layout" id="layout">
+            <option value="body">body</option>
+            <option value="double"></option>
+        </select>
+        <span>or</span>
+        <label>on top of rectangle</label>
+        <select name="layout" id="layout">
+            <option value="body">body</option>
+            <option value="double"></option>
+        </select>
+    </div>
+
+    <button>add rectangle</button>
+</div>
+
+<div id="backendDeveloper">
+    <h2>be developer</h2>
+    <h3>for the sake of simplicity, everything is object</h3>
+    <div class="inline-block">
+        <label>new or pick parent?</label>
+        <select name="layout" id="sourceobject" onchange="loadObjectList()">
+            <option value="single">new</option>
+            <option value="pick">pick</option>
+        </select>
+        <span  id="objects" style="display:none">
+            <label>reference object</label>
+            <select name="object" >
+                <option value="object">object</option>
+            </select>
+        </span>
+    </div>
+
+    <button id="addProperty" onclick="addProperty()">add property</button>
+
+    <div class="inline-block" id="propertyPrompt">
+        <div id="template">
+            <label>name</label>
+            <input type="text" value=""></input>
+            <label>type</label>
+            <select name="objectType">
+                <option value="object">object</option>
+                <option value="array">array</option>
+                <option value="date">date</option>
+                <option value="boolean">boolean</option>
+                <option value="number">number</option>
+                <option value="string">string</option>
+            </select>
+        </div>
+
+    </div>
+</div>
+
+<div id="frontendDeveloper">
+    <h2>fe developer</h2>
+    <h3>for the sake of simplicity, everything is copied from ux and be developer</h3>
+    <div class="inline-block">
+        <button>add object</button>
+    </div>
+</div>
+
+<style>
+    div{
+        padding: 10px;
+        border: 2px solid black;
+        margin: 10px;
+        background:cornsilk
+    }
+    .inline-block{
+        display: block;
+        border: 0px;
+    }
+</style>
+
+<script>
+    function loadRectangleList(){
+        if(document.querySelector("#source").value==="pick"){
+            document.querySelector("#rectangles").style.display="block";
+        }
+        else{
+            document.querySelector("#rectangles").style.display="none";
+        }
+    }
+
+    function loadObjectList(){
+        if(document.querySelector("#sourceobject").value==="pick"){
+            document.querySelector("#objects").style.display="block";
+        }
+        else{
+            document.querySelector("#objects").style.display="none";
+        }
+    }
+
+    function addProperty(e){
+        // pick from template
+        var doc = new DOMParser().parseFromString( document.querySelector("#template").innerHTML, "text/xml");
+        document.querySelector("#propertyPrompt").appendChild(doc.children[0]);
+    }
+</script>
